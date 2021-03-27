@@ -16,11 +16,30 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class which implements register functionality
+ *
+ * @author Vadim Rataiko
+ * @version 1.0
+ */
 @WebServlet(name = "RegisterServlet", urlPatterns = "/registerServlet")
 public class RegisterServlet extends HttpServlet {
+
+    /** Constant attribute name for user storage */
     private static final String DATA = "userList";
+
+    /** Constant attribute name for "SIGN_UP_FAIL" flag */
     private static final String SIGN_UP_FAIL = "fail_sign_up";
 
+    /**
+     * GET request processing method. Register new user if all field are filled with data (username must be unique).
+     * Redirects to sign up page with error message if register process fails.
+     *
+     * @param request HttpServletRequest object
+     * @param response HttpServletResponse object
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();

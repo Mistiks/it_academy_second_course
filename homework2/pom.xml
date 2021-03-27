@@ -1,7 +1,7 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>homework1</groupId>
+    <groupId>homework2</groupId>
     <artifactId>Mk-JD2-78-21</artifactId>
     <version>0.0.0-SHAPSHOT</version>
     <packaging>war</packaging>
