@@ -47,14 +47,13 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String contextPath = request.getContextPath();
+        userList = (ArrayList) context.getAttribute(DATA);
 
-        if (username.isEmpty() || password.isEmpty()) {
+        if (username.isEmpty() || password.isEmpty() || userList == null) {
             session.setAttribute(SIGN_IN_FAIL, "true");
             response.sendRedirect(contextPath + "/signIn");
             return;
         }
-
-        userList = (ArrayList) context.getAttribute(DATA);
 
             for (Object object : userList) {
                 User user = (User) object;

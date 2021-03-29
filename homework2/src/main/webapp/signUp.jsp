@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.*, java.text.*" %>
 
@@ -38,14 +40,10 @@
 			<p><input type="submit" value="Submit" /></form></p>
 			<p><input type="button" onclick="location.href='/Mk-JD2-78-21-0.0.0-SHAPSHOT/signIn';" value="Sign in" /></p>
 
-			   <%
-                    String showParameter = (String) session.getAttribute("fail_sign_up");
-                    if(showParameter == "true")  {
-                %>
+            <c:if test = "${sessionScope.fail_sign_up == true}">
                    <p><span style='color: red;'>Incorrect data. Please, try again!</span></p>
-                <%
-                        session.removeAttribute("fail_sign_up");
-                    }
-                %>
+            </c:if>
+
+            <c:remove var="fail_sign_up" scope="session" />
 </body>
 </html>
