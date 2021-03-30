@@ -14,8 +14,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * Class that provides homework main functionality
  *
+ * @version 1.0
  * @author Vadim Rataiko
- * @since 0.0.0
  */
 @WebServlet(name = "StorageServlet", urlPatterns = "/storage")
 public class StorageServlet extends HttpServlet {

@@ -2,16 +2,15 @@ package web.servlets.api;
 
 /**
  * Storages that can be used
+ *
+ * @version 1.0
+ * @author Vadim Rataiko
  */
 public enum Storage {
 
-    /**
-     * Session storage
-     */
+    /** Session storage */
     SESSION,
 
-    /**
-     * Cookies storage
-     */
+    /** Cookies storage */
     COOKIES
 }
