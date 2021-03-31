@@ -40,8 +40,9 @@ public class StorageServlet extends HttpServlet {
      *
      * @param req ServletRequest object
      * @param resp ServletResponse object
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if the request for the GET could not be handled
+     * @throws IOException if an input or output error is detected when the servlet handles the GET request
+     * @throws IllegalArgumentException if header doesn't exist or has unsupported value
      */
     @Override
     protected void doGet(HttpServletRequest req,

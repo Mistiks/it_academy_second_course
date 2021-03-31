@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>homework2</groupId>
-    <artifactId>Mk-JD2-78-21</artifactId>
+    <artifactId>Mk-JD2-78-21-2</artifactId>
     <version>0.0.0-SHAPSHOT</version>
     <packaging>war</packaging>
 
@@ -60,6 +60,12 @@
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
             <version>2.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
@@ -112,6 +118,15 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.6</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*SecurityFilter.*</exclude>
+                        <exclude>**/*ChatServlet.*</exclude>
+                        <exclude>**/*LoginServlet.*</exclude>
+                        <exclude>**/*MessageServlet.*</exclude>
+                        <exclude>**/*RegisterServlet.*</exclude>
+                    </excludes>>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>

@@ -22,8 +22,8 @@ public class SecurityFilter implements Filter {
      * @param request ServletRequest object
      * @param response ServletResponse object
      * @param chain FilterChain object
-     * @throws IOException
-     * @throws ServletException
+     * @throws ServletException if the request for the GET could not be handled
+     * @throws IOException if an input or output error is detected when the servlet handles the GET request
      */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
