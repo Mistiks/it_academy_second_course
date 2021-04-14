@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 /**
  * Class which stores message from one user to another
  *
- * @version 1.0
  * @author Vadim Rataiko
+ * @version 1.0
  */
 public class Message {
 
@@ -19,7 +19,7 @@ public class Message {
     /** Message text */
     private String text;
     /** Time when message was sent*/
-    LocalDateTime time;
+    private LocalDateTime time;
 
     /**
      * Constructor with parameters
@@ -35,9 +35,6 @@ public class Message {
         this.text = text;
         this.time = time;
     }
-
-    /** Default constructor without parameters */
-    public Message() { }
 
     /**
      * Getter of sender field

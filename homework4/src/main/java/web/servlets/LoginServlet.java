@@ -1,16 +1,12 @@
 package web.servlets;
 
 import model.User;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import view.AuthService;
 import view.api.IAuthService;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Class which implements login functionality
@@ -20,9 +16,6 @@ import java.util.List;
  */
 @WebServlet(name = "LoginServlet", urlPatterns = "/loginServlet")
 public class LoginServlet extends HttpServlet {
-
-    /** Constant attribute name for user storage */
-    private static final String DATA = "userList";
 
     /** Constant attribute name for current user storage */
     private static final String CURRENT_USER = "currentUser";

@@ -1,4 +1,4 @@
-package core.dto;
+package model.dto;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

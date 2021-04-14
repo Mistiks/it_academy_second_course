@@ -152,7 +152,7 @@ public class User {
      *
      * @return String that contains birth date
      */
-    public String getDateOfBirthString() {
+    public String getDateOfBirthToString() {
         LocalDate localDate = getDateOfBirth();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return localDate.format(formatter);

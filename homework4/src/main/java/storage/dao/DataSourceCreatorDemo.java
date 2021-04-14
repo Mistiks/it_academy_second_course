@@ -1,4 +1,4 @@
-package dao;
+package storage.dao;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import javax.sql.DataSource;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
  * Class for creating connection to database
  *
  * @author Ilya Shadryn
- * @version 1.0
+ * @version  1.0
  */
 public class DataSourceCreatorDemo {
 
@@ -30,7 +30,7 @@ public class DataSourceCreatorDemo {
     private DataSourceCreatorDemo() throws IOException, SQLException, PropertyVetoException {
         cpds = new ComboPooledDataSource();
         cpds.setDriverClass("org.postgresql.Driver");
-        cpds.setJdbcUrl("jdbc:postgresql://localhost:5432/demo");
+        cpds.setJdbcUrl("jdbc:postgresql://localhost:5432/edu");
         cpds.setUser("postgres");
         cpds.setPassword("1642002059201Aa");
         cpds.setMinPoolSize(5);

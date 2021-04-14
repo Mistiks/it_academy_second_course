@@ -13,7 +13,7 @@ import java.util.List;
  * Class-realisation of ITableAccess interface for airports_data table in database
  *
  * @author Vadim Rataiko
- * @since 1.0
+ * @version  1.0
  */
 public class AirportDAO implements ITableAccess<Airport> {
 

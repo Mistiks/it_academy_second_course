@@ -1,4 +1,4 @@
-package core.entity;
+package model;
 
 import model.Message;
 import org.junit.jupiter.api.Assertions;

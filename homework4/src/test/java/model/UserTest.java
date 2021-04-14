@@ -1,6 +1,5 @@
-package core.entity;
+package model;
 
-import model.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -104,5 +103,12 @@ public class UserTest {
     public void setDateOfBirth() {
         user.setDateOfBirth(LocalDate.MAX);
         Assertions.assertEquals(LocalDate.MAX, user.getDateOfBirth());
+    }
+
+    /** Checks String formatting of dateOfBirth field */
+    @Test
+    public void getDateOfBirthStringTest() {
+        user.setDateOfBirth(LocalDate.of(2020, 1, 8));
+        Assertions.assertEquals("2020-01-08", user.getDateOfBirthToString());
     }
 }

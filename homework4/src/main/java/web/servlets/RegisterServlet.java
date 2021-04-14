@@ -9,8 +9,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import view.UserService;
 import view.api.IUserService;
-
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -59,7 +59,9 @@ public class RegisterServlet extends HttpServlet {
         try {
             dateOfBirth = LocalDate.parse(request.getParameter("dateOfBirth"), formatter);
         } catch (DateTimeParseException e) {
-            dateOfBirth = null;
+            session.setAttribute(SIGN_UP_FAIL, "true");
+            response.sendRedirect(contextPath + "/signUp");
+            return;
         }
 
         User user = new User(first_name, last_name, patronymic, username, password, dateOfBirth);

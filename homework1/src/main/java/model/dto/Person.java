@@ -1,4 +1,4 @@
-package core.dto;
+package model.dto;
 
 /**
  * Dto class for homework needs

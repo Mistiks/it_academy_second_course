@@ -1,6 +1,6 @@
 package web.servlets;
 
-import core.dto.Person;
+import model.dto.Person;
 import web.servlets.api.Storage;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

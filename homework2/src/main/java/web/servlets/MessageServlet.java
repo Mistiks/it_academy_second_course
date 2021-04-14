@@ -1,6 +1,6 @@
 package web.servlets;
 
-import core.entity.Message;
+import model.entity.Message;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

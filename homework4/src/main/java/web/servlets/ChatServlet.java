@@ -1,18 +1,16 @@
 package web.servlets;
 
 import model.Message;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import storage.ChatStorage;
 import storage.api.IChatStorage;
+import storage.dao.MessageDAO;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,18 +25,18 @@ public class ChatServlet extends HttpServlet {
     /** Constant attribute name for current user storage */
     private static final String CURRENT_USER = "currentUser";
 
-    /** Constant attribute name for messages storage */
-    private static final String MESSAGE = "messageList";
-
     /** Constant attribute name for user's messages storage */
     private static final String CHATS = "userChats";
 
     /** Instance of class that implements IChatStorage interface */
     private final IChatStorage chatStorage;
 
-    /** Default constructor which connect IChatStorage interface to servlet */
+    /**
+     * Default constructor which defines implementation of IChatStorage
+     * interface in servlet
+     */
     public ChatServlet() {
-        this.chatStorage = ChatStorage.getInstance();
+        this.chatStorage = MessageDAO.getInstance();
     }
 
     /**

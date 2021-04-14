@@ -1,4 +1,4 @@
-package core.entity;
+package model.entity;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

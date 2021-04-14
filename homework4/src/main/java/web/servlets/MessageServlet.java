@@ -1,7 +1,6 @@
 package web.servlets;
 
 import model.Message;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -9,14 +8,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import view.MessageService;
-import view.UserService;
 import view.api.IMessageService;
-import view.api.IUserService;
-
 import java.io.IOException;;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Class which implements sending messages functionality
@@ -70,16 +65,13 @@ public class MessageServlet extends HttpServlet {
             return;
         }
 
-        Message message = new Message();
-        message.setSender(currentUser);
-        message.setTime(LocalDateTime.now());
-        message.setText(text);
+        Message message = new Message(currentUser, recipient, text, LocalDateTime.now());
 
         try{
             this.messageService.addMessage(recipient, message);
             session.setAttribute(MESSAGE_SENT, "true");
             response.sendRedirect(contextPath + "/message");
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             response.sendRedirect(contextPath + "/message");
             session.setAttribute(EMPTY_FIELD, "true");
         }

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Assertions;
  * Test class for AirportDAO object
  *
  * @author Vadim Rataiko
- * @since 1.0
+ * @version 1.0
  */
 public class AirportDAOTest {
 
