@@ -10,16 +10,12 @@ import jakarta.servlet.http.HttpSession;
 import view.UserService;
 import view.api.IUserService;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 /**
  * Class which implements register functionality
  *
  * @author Vadim Rataiko
- * @version 1.0
+ * @version 1.1
  */
 @WebServlet(name = "RegisterServlet", urlPatterns = "/registerServlet")
 public class RegisterServlet extends HttpServlet {
@@ -47,26 +43,16 @@ public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String first_name = request.getParameter("firstName");
         String last_name = request.getParameter("lastName");
         String patronymic = request.getParameter("patronymic");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        LocalDate dateOfBirth;
+        String dateOfBirth = request.getParameter("dateOfBirth");
         String contextPath = request.getContextPath();
 
         try {
-            dateOfBirth = LocalDate.parse(request.getParameter("dateOfBirth"), formatter);
-        } catch (DateTimeParseException e) {
-            session.setAttribute(SIGN_UP_FAIL, "true");
-            response.sendRedirect(contextPath + "/signUp");
-            return;
-        }
-
-        User user = new User(first_name, last_name, patronymic, username, password, dateOfBirth);
-
-        try {
+            User user = new User(first_name, last_name, patronymic, username, password, dateOfBirth);
             this.userService.signUp(user);
             session.setAttribute(SIGN_UP_FAIL, "false");
             response.sendRedirect(contextPath + "/signIn");

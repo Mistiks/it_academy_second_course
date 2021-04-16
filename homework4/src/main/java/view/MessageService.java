@@ -3,7 +3,7 @@ package view;
 import model.Message;
 import model.User;
 import storage.api.IChatStorage;
-import storage.dao.MessageDAO;
+import storage.dao.MessageDao;
 import view.api.IMessageService;
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class MessageService implements IMessageService {
 
     /** Private constructor that defines implementation of IChatStorage interface */
     private MessageService() {
-        this.chatStorage = MessageDAO.getInstance();
+        this.chatStorage = MessageDao.getInstance();
     }
 
     /**

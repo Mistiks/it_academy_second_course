@@ -2,7 +2,7 @@ package view;
 
 import model.User;
 import org.junit.jupiter.api.Test;
-import storage.dao.UserDAO;
+import storage.dao.UserDao;
 import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -11,15 +11,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * Test class for UserService object
  *
  * @author Vadim Rataiko
- * @version 1.0
+ * @version 1.1
  */
 public class UserServiceTest {
 
     /** Instance of UserService object */
     private final UserService instance = UserService.getInstance();
 
-    /** Instance of UserDAO object */
-    private final UserDAO userInstance = UserDAO.getInstance();
+    /** Instance of UserDao object */
+    private final UserDao userInstance = UserDao.getInstance();
 
     /**
      * Testing all functionality from class
@@ -29,24 +29,24 @@ public class UserServiceTest {
     public void classTest() {
         Throwable thrown = assertThrows(IllegalArgumentException.class,
                 () -> instance.signUp(new User("test", "test" , "test",
-                        "test", "" , LocalDate.now())));
+                        "test", "" , "10/10/2010")));
         thrown = assertThrows(IllegalArgumentException.class,
                 () -> instance.signUp(new User("test", "test" , "test",
-                        "", "test" , LocalDate.now())));
+                        "", "test" , "10/10/2010")));
         thrown = assertThrows(IllegalArgumentException.class,
                 () -> instance.signUp(new User("test", "test" , "test",
-                        null, "test" , LocalDate.now())));
+                        null, "test" , "10/10/2010")));
         thrown = assertThrows(IllegalArgumentException.class,
                 () -> instance.signUp(new User("", "test" , "test",
-                        "test", "test" , LocalDate.now())));
+                        "test", "test" , "10/10/2010")));
         thrown = assertThrows(IllegalArgumentException.class,
                 () -> instance.signUp(new User("test", "" , "test",
-                        "test", "test" , LocalDate.now())));
+                        "test", "test" , "10/10/2010")));
         thrown = assertThrows(IllegalArgumentException.class,
                 () -> instance.signUp(new User("test", "test" , "",
-                        "test", "test" , LocalDate.now())));
+                        "test", "test" , "10/10/2010")));
         instance.signUp(new User("test", "test" , "test",
-                "test", "123" , LocalDate.now()));
+                "test", "123" , "10/10/2010"));
         assertEquals("test", instance.get("test").getFirstName());
         userInstance.deleteUser("test");
     }

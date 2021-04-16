@@ -2,7 +2,7 @@ package view;
 
 import model.User;
 import storage.api.IUserStorage;
-import storage.dao.UserDAO;
+import storage.dao.UserDao;
 import view.api.IUserService;
 
 /**
@@ -22,7 +22,7 @@ public class UserService implements IUserService {
 
     /** Private constructor that defines implementation of IUserStorage interface */
     private UserService() {
-        this.userStorage = UserDAO.getInstance();
+        this.userStorage = UserDao.getInstance();
     }
 
     /**

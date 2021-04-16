@@ -3,9 +3,8 @@ package view;
 import model.Message;
 import model.User;
 import org.junit.jupiter.api.Test;
-import storage.dao.MessageDAO;
-import storage.dao.UserDAO;
-import java.time.LocalDate;
+import storage.dao.MessageDao;
+import storage.dao.UserDao;
 import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -13,18 +12,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Test class for MessageService object
  *
  * @author Vadim Rataiko
- * @version 1.0
+ * @version 1.0.1
  */
 public class MessageServiceTest {
 
     /** Instance of MessageService object */
     private final MessageService instance = MessageService.getInstance();
 
-    /** Instance of MessageDAO object */
-    private final MessageDAO messageInstance = MessageDAO.getInstance();
+    /** Instance of MessageDao object */
+    private final MessageDao messageInstance = MessageDao.getInstance();
 
-    /** Instance of UserDAO object */
-    private final UserDAO userInstance = UserDAO.getInstance();
+    /** Instance of UserDao object */
+    private final UserDao userInstance = UserDao.getInstance();
 
     /**
      * Testing all functionality from class
@@ -32,7 +31,7 @@ public class MessageServiceTest {
      */
     @Test
     public void classTest() {
-        User user = new User("test", "test", "test", "test", "test", LocalDate.now());
+        User user = new User("test", "test", "test", "test", "test", "10/10/2010");
         userInstance.add(user);
         instance.addMessage("test", new Message("test", "test", "test", LocalDateTime.now()));
         assertEquals(1, instance.get(user).size());

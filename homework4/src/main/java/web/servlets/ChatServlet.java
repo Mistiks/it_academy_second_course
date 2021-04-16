@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import storage.api.IChatStorage;
-import storage.dao.MessageDAO;
+import storage.dao.MessageDao;
 
 import java.io.IOException;
 import java.util.List;
@@ -36,7 +36,7 @@ public class ChatServlet extends HttpServlet {
      * interface in servlet
      */
     public ChatServlet() {
-        this.chatStorage = MessageDAO.getInstance();
+        this.chatStorage = MessageDao.getInstance();
     }
 
     /**

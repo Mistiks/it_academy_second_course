@@ -3,23 +3,24 @@ package model;
 import java.time.LocalDateTime;
 
 /**
- * Class which stores message from one user to another
+ * Class which stores entered message from one user to another
  *
  * @author Vadim Rataiko
- * @version 1.0
+ * @version 1.1
  */
 public class Message {
 
     /** Message sender */
-    private String sender;
+    private final String sender;
 
     /** Message recipient*/
-    private String recipient;
+    private final String recipient;
 
     /** Message text */
-    private String text;
+    private final String text;
+
     /** Time when message was sent*/
-    private LocalDateTime time;
+    private final LocalDateTime time;
 
     /**
      * Constructor with parameters
@@ -46,30 +47,12 @@ public class Message {
     }
 
     /**
-     * Setter of sender field
-     *
-     * @param sender value which will be set
-     */
-    public void setSender(String sender) {
-        this.sender = sender;
-    }
-
-    /**
      * Getter of recipient field
      *
      * @return String with recipient value
      */
     public String getRecipient() {
         return recipient;
-    }
-
-    /**
-     * Setter of recipient field
-     *
-     * @param recipient value which will be set
-     */
-    public void setRecipient(String recipient) {
-        this.recipient = recipient;
     }
 
     /**
@@ -82,29 +65,11 @@ public class Message {
     }
 
     /**
-     * Setter of text field
-     *
-     * @param text value which will be set
-     */
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    /**
      * Getter of time field
      *
      * @return LocalDateTime with time value
      */
     public LocalDateTime getTime() {
         return time;
-    }
-
-    /**
-     * Setter of time field
-     *
-     * @param time value which will be set
-     */
-    public void setTime(LocalDateTime time) {
-        this.time = time;
     }
 }

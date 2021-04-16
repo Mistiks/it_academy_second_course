@@ -1,6 +1,5 @@
 package model;
 
-import model.Message;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +9,7 @@ import java.time.LocalDateTime;
 /**
  * Testing class for Message objects
  *
- * @version 1.0
+ * @version 1.1
  * @author Vadim Rataiko
  */
 public class MessageTest {
@@ -33,24 +32,10 @@ public class MessageTest {
         Assertions.assertEquals("Sender", message.getSender());
     }
 
-    /** Checks correct setting of sender field */
-    @Test
-    public void setSender() {
-        message.setSender("Test");
-        Assertions.assertEquals("Test", message.getSender());
-    }
-
     /** Checks correct getting of recipient field */
     @Test
     public void getRecipient() {
         Assertions.assertEquals("Recipient", message.getRecipient());
-    }
-
-    /** Checks correct setting of recipient field */
-    @Test
-    public void setRecipient() {
-        message.setRecipient("Test");
-        Assertions.assertEquals("Test", message.getRecipient());
     }
 
     /** Checks correct getting of text field */
@@ -59,23 +44,9 @@ public class MessageTest {
         Assertions.assertEquals("hello", message.getText());
     }
 
-    /** Checks correct setting of text field */
-    @Test
-    public void setText() {
-        message.setText("Test");
-        Assertions.assertEquals("Test", message.getText());
-    }
-
     /** Checks correct getting of time field */
     @Test
     public void getTime() {
         Assertions.assertEquals(time, message.getTime());
-    }
-
-    /** Checks correct setting of time field */
-    @Test
-    public void setTime() {
-        message.setTime(LocalDateTime.MIN);
-        Assertions.assertEquals(LocalDateTime.MIN, message.getTime());
     }
 }

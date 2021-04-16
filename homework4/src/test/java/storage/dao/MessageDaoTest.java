@@ -11,10 +11,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Vadim Rataiko
  * @version 1.0
  */
-public class MessageDAOTest {
+public class MessageDaoTest {
 
-    /** Instance of MessageDAO object */
-    private final MessageDAO instance = MessageDAO.getInstance();
+    /** Instance of MessageDao object */
+    private final MessageDao instance = MessageDao.getInstance();
 
     /**
      * Testing all functionality from class

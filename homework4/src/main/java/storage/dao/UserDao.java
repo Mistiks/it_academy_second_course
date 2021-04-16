@@ -10,23 +10,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Class-connector to users table in database
  *
  * @author Vadim Rataiko
- * @version 1.0
+ * @version 1.0.1
  */
-public class UserDAO implements IUserStorage {
+public class UserDao implements IUserStorage {
 
     /** Instance of UserDAO object */
-    private final static UserDAO instance = new UserDAO();
+    private final static UserDao instance = new UserDao();
 
     /** Instance of DataSource object */
     private DataSource ds;
 
     /** Default constructor that defines DataSource object */
-    private UserDAO() {
+    private UserDao() {
         try {
             this.ds = DataSourceCreatorDemo.getInstance();
         } catch (SQLException | PropertyVetoException | IOException e) {
@@ -47,6 +48,7 @@ public class UserDAO implements IUserStorage {
             return null;
         }
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         User user = null;
         String sql = "SELECT * FROM homework3.users WHERE users.username = ?";
 
@@ -64,11 +66,13 @@ public class UserDAO implements IUserStorage {
                     String username = result.getString("username");
                     String password = result.getString("password");
                     LocalDate birthDate = result.getDate("birth_date").toLocalDate();
-                    user = new User(firstName, lastName, patronymic, username, password, birthDate);
+                    String date = birthDate.format(formatter);
+                    user = new User(firstName, lastName, patronymic, username, password, date);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
 
         return user;
@@ -127,6 +131,7 @@ public class UserDAO implements IUserStorage {
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new IllegalArgumentException("User adding error");
         }
     }
 
@@ -142,10 +147,8 @@ public class UserDAO implements IUserStorage {
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, login);
+            statement.executeUpdate();
 
-            try (ResultSet result = statement.executeQuery()) {
-                result.next();
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -156,7 +159,7 @@ public class UserDAO implements IUserStorage {
      *
      * @return UserDao class
      */
-    public static UserDAO getInstance() {
+    public static UserDao getInstance() {
         return instance;
     }
 }

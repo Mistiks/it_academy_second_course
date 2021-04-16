@@ -18,16 +18,16 @@ import java.util.List;
  * @author Vadim Rataiko
  * @since 1.0
  */
-public class MessageDAO implements IChatStorage {
+public class MessageDao implements IChatStorage {
 
     /** Instance of MessageDAO object */
-    private final static MessageDAO instance = new MessageDAO();
+    private final static MessageDao instance = new MessageDao();
 
     /** Instance of DataSource object */
     private DataSource ds;
 
     /** Default constructor that defines DataSource object */
-    private MessageDAO() {
+    private MessageDao() {
         try {
             this.ds = DataSourceCreatorDemo.getInstance();
         } catch (SQLException | PropertyVetoException | IOException e) {
@@ -112,7 +112,7 @@ public class MessageDAO implements IChatStorage {
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, recipient);
-            statement.execute();
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -123,7 +123,7 @@ public class MessageDAO implements IChatStorage {
      *
      * @return MessageDao class
      */
-    public static MessageDAO getInstance() {
+    public static MessageDao getInstance() {
         return instance;
     }
 }
