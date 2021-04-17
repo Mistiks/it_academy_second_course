@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Assertions;
  * Test class for FlightDAO object
  *
  * @author Vadim Rataiko
- * @since 1.0
+ * @version 1.0
  */
-public class FlightDAOTest {
+public class FlightDaoTest {
 
-    /** Instance of AirportDAO object */
-    private final FlightDAO instance = FlightDAO.getInstance();
+    /** Instance of AirportDao object */
+    private final FlightDao instance = FlightDao.getInstance();
 
     /** Testing getList method */
     @Test

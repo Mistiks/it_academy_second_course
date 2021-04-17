@@ -11,7 +11,7 @@ import java.sql.SQLException;
  * Test class for DataSourceCreatorDemoTest object
  *
  * @author Vadim Rataiko
- * @since 1.0
+ * @version 1.0
  */
 public class DataSourceCreatorDemoTest {
 

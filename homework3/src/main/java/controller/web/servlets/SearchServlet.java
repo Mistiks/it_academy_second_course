@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import dao.FlightDAO;
+import dao.FlightDao;
 import dao.api.ITableAccess;
 import model.Flight;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import java.util.List;
  * answer for showing to JSP page
  *
  * @author Vadim Rataiko
- * @since 1.0
+ * @version 1.0.1
  */
 @WebServlet(urlPatterns = "/search")
 public class SearchServlet extends HttpServlet {
@@ -26,12 +26,9 @@ public class SearchServlet extends HttpServlet {
     /** Instance of ITableAccess interface */
     private final ITableAccess<Flight> tableAccess;
 
-    /** Variable that stores amount of records per page */
-    private final int rowsOnPage = 25;
-
     /** Default constructor which defines ITableAccess interface */
     public SearchServlet() {
-        this.tableAccess = FlightDAO.getInstance();
+        this.tableAccess = FlightDao.getInstance();
     }
 
     /**
@@ -71,10 +68,11 @@ public class SearchServlet extends HttpServlet {
         System.out.println(departureDate);
 
         int numberOfRows = tableAccess.getRowCount(parameters);
-        int maxPage = (int) Math.ceil((double)numberOfRows / this.rowsOnPage);
+        int rowsOnPage = 25;
+        int maxPage = (int) Math.ceil((double)numberOfRows / rowsOnPage);
 
         parameters = new String[]{departureDate, departure, arrival,
-                String.valueOf(this.rowsOnPage), String.valueOf(page)};
+                String.valueOf(rowsOnPage), String.valueOf(page)};
         List<Flight> flightsList = this.tableAccess.getList(parameters);
 
         request.setAttribute("flightsList", flightsList);

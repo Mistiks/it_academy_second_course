@@ -13,18 +13,18 @@ import java.util.List;
  * Class-realisation of ITableAccess interface for airports_data table in database
  *
  * @author Vadim Rataiko
- * @version  1.0
+ * @version  1.0.1
  */
-public class AirportDAO implements ITableAccess<Airport> {
+public class AirportDao implements ITableAccess<Airport> {
 
     /** Instance of AirportDAO object */
-    private final static AirportDAO instance = new AirportDAO();
+    private final static AirportDao instance = new AirportDao();
 
     /** Instance of DataSource object */
     private DataSource ds;
 
     /** Default constructor that defines DataSource object */
-    private AirportDAO() {
+    private AirportDao() {
         try {
             this.ds = DataSourceCreatorDemo.getInstance();
         } catch (SQLException | PropertyVetoException | IOException e) {
@@ -41,25 +41,29 @@ public class AirportDAO implements ITableAccess<Airport> {
     @Override
     public List<Airport> getList(String[] parameters) {
         List<Airport> listAirport = new ArrayList<>();
-        String sql = "SELECT airport_code, airport_name::json ->> 'ru' as airport_name, " +
-                "city::json ->> 'ru' as city, coordinates, timezone " +
+        String sql = "SELECT airport_code, airport_name::json ->> ? as airport_name, " +
+                "city::json ->> ? as city, coordinates, timezone " +
                 "FROM airports_data ORDER BY city;";
 
         try (Connection connection = this.ds.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet result = statement.executeQuery(sql)) {
+             PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            while (result.next()) {
-                String code = result.getString("airport_code");
-                String name = result.getString("airport_name");
-                String city = result.getString("city");
-                String coordinates = result.getString("coordinates");
-                String timezone = result.getString("timezone");
-                Airport airport = new Airport(code, name, city, coordinates, timezone);
+            statement.setString(1, parameters[0]);
+            statement.setString(2, parameters[0]);
 
-                listAirport.add(airport);
+            try (ResultSet result = statement.executeQuery()) {
+
+                while (result.next()) {
+                    String code = result.getString("airport_code");
+                    String name = result.getString("airport_name");
+                    String city = result.getString("city");
+                    String coordinates = result.getString("coordinates");
+                    String timezone = result.getString("timezone");
+                    Airport airport = new Airport(code, name, city, coordinates, timezone);
+
+                    listAirport.add(airport);
+                }
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -133,7 +137,7 @@ public class AirportDAO implements ITableAccess<Airport> {
      *
      * @return AirportDAO class
      */
-    public static AirportDAO getInstance() {
+    public static AirportDao getInstance() {
         return instance;
     }
 }

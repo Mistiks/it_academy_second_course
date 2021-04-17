@@ -14,18 +14,18 @@ import java.util.List;
  * Class-realisation of ITableAccess interface for flights table in database
  *
  * @author Vadim Rataiko
- * @since 1.0
+ * @version 1.0
  */
-public class FlightDAO implements ITableAccess<Flight> {
+public class FlightDao implements ITableAccess<Flight> {
 
     /** Instance of FlightDAO object */
-    private final static FlightDAO instance = new FlightDAO();
+    private final static FlightDao instance = new FlightDao();
 
     /** Instance of DataSource object */
     private DataSource ds;
 
     /** Default constructor that defines DataSource object */
-    private FlightDAO() {
+    private FlightDao() {
         try {
             this.ds = DataSourceCreatorDemo.getInstance();
         } catch (SQLException | PropertyVetoException | IOException e) {
@@ -171,7 +171,7 @@ public class FlightDAO implements ITableAccess<Flight> {
      * @return FlightDAO class
      */
 
-    public static FlightDAO getInstance() {
+    public static FlightDao getInstance() {
         return instance;
     }
 }

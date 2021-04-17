@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import dao.AirportDAO;
+import dao.AirportDao;
 import dao.api.ITableAccess;
 import model.Airport;
 import java.io.IOException;
@@ -17,7 +17,7 @@ import java.util.List;
  * When user fills form, redirects data in another servlet for search in database
  *
  * @author Vadim Rataiko
- * @since 1.0
+ * @version 1.0
  */
 @WebServlet(urlPatterns = "/flights")
 public class FlightServlet extends HttpServlet{
@@ -30,7 +30,7 @@ public class FlightServlet extends HttpServlet{
 
     /** Default constructor which defines ITableAccess interface */
     public FlightServlet() {
-        this.tableAccess = AirportDAO.getInstance();
+        this.tableAccess = AirportDao.getInstance();
     }
 
     /**

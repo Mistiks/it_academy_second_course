@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import dao.AirportDAO;
+import dao.AirportDao;
 import dao.api.ITableAccess;
 import model.Airport;
 import java.io.IOException;
@@ -17,7 +17,7 @@ import java.util.List;
  * Sends it to jsp page.
  *
  * @author Vadim Rataiko
- * @since 1.0
+ * @version 1.0
  */
 @WebServlet(urlPatterns = "/airports")
 public class ListServlet extends HttpServlet{
@@ -27,7 +27,7 @@ public class ListServlet extends HttpServlet{
 
     /** Default constructor which defines ITableAccess interface */
     public ListServlet() {
-        this.tableAccess = AirportDAO.getInstance();
+        this.tableAccess = AirportDao.getInstance();
     }
 
     /**
@@ -40,8 +40,15 @@ public class ListServlet extends HttpServlet{
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Airport> listAirport = this.tableAccess.getList(null);
+        String[] language = {request.getParameter("language")};
+
+        if (language[0] == null) {
+            language[0] = "ru";
+        }
+
+        List<Airport> listAirport = this.tableAccess.getList(language);
         request.setAttribute("listAirport", listAirport);
+        request.setAttribute("language", language[0]);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/airports.jsp");
         dispatcher.forward(request, response);
