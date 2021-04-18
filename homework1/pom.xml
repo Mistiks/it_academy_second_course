@@ -121,6 +121,8 @@
                 <configuration>
                     <excludes>
                         <exclude>**/*StorageServlet.*</exclude>
+                        <exclude>**/*CookieWorker.*</exclude>
+                        <exclude>**/*AttributeWorker.*</exclude>
                     </excludes>>
                 </configuration>
                 <executions>
