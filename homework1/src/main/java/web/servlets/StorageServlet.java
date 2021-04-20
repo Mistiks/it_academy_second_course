@@ -3,6 +3,7 @@ package web.servlets;
 import model.dto.Person;
 import view.AttributeWorker;
 import view.CookieWorker;
+import view.api.ISaveShow;
 import web.servlets.api.Storage;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,7 +14,7 @@ import java.io.PrintWriter;
 /**
  * Class that provides homework main functionality
  *
- * @version 1.1
+ * @version 1.2
  * @author Vadim Rataiko
  */
 @WebServlet(name = "StorageServlet", urlPatterns = "/storage")
@@ -31,9 +32,6 @@ public class StorageServlet extends HttpServlet {
     /** Parameter name for storage type */
     private static final String HEADER_PARAMETER = "storageType";
 
-    /** Parameter name for Person object that ready for get or set operation */
-    private static final String ATTRIBUTE = "User";
-
     /**
      * Method which processes GET request in homework
      *
@@ -46,40 +44,31 @@ public class StorageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req,
                          HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
         String header = req.getHeader(HEADER_PARAMETER);
         Person person;
         String firstName;
         String lastName;
         int age;
-        CookieWorker cookieWorker = new CookieWorker();
-        AttributeWorker attributeWorker = new AttributeWorker();
+        ISaveShow worker;
 
         if (header == null) {
             throw new IllegalArgumentException("Header doesn't exist.");
         }
 
         if (header.equalsIgnoreCase(String.valueOf(Storage.COOKIES))) {
-            firstName = cookieWorker.getValueParamOrCookie(req, FIRST_NAME_PARAM);
-            lastName = cookieWorker.getValueParamOrCookie(req, LAST_NAME_PARAM);
-            age = Integer.parseInt(cookieWorker.getValueParamOrCookie(req, AGE_PARAM));
+            worker = new CookieWorker();
+            firstName = worker.workWithParameter(FIRST_NAME_PARAM, req, resp);
+            lastName = worker.workWithParameter(LAST_NAME_PARAM, req, resp);
+            age = Integer.parseInt(worker.workWithParameter(AGE_PARAM, req, resp));
 
             person = new Person(firstName, lastName, age);
-            cookieWorker.saveCookies(resp, req, FIRST_NAME_PARAM, person.getFirstName());
-            cookieWorker.saveCookies(resp, req, LAST_NAME_PARAM, person.getLastName());
-            cookieWorker.saveCookies(resp, req, AGE_PARAM, String.valueOf(person.getAge()));
-
-            person.setFirstName(cookieWorker.getValueParamOrCookie(req, FIRST_NAME_PARAM));
-            person.setLastName(cookieWorker.getValueParamOrCookie(req, LAST_NAME_PARAM));
-            person.setAge(Integer.parseInt(cookieWorker.getValueParamOrCookie(req, AGE_PARAM)));
        } else if (header.equalsIgnoreCase(String.valueOf(Storage.SESSION))) {
-            firstName = attributeWorker.getValueParamOrAttribute(req, session, FIRST_NAME_PARAM);
-            lastName = attributeWorker.getValueParamOrAttribute(req, session, LAST_NAME_PARAM);
-            age = Integer.parseInt(attributeWorker.getValueParamOrAttribute(req, session, AGE_PARAM));
+            worker = new AttributeWorker();
+            firstName = worker.workWithParameter(FIRST_NAME_PARAM, req, resp);
+            lastName = worker.workWithParameter(LAST_NAME_PARAM, req, resp);
+            age = Integer.parseInt(worker.workWithParameter(AGE_PARAM, req, resp));
 
             person = new Person(firstName, lastName, age);
-            session.setAttribute(ATTRIBUTE, person);
-            person = (Person) session.getAttribute(ATTRIBUTE);
         } else {
             throw new IllegalArgumentException("Invalid header");
         }

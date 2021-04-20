@@ -3,6 +3,7 @@ package view;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import view.api.ISaveShow;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
@@ -10,9 +11,9 @@ import java.util.concurrent.TimeUnit;
  * Class which contains all methods for work with cookies
  *
  * @author Vadim Rataiko
- * @version 1.0
+ * @version 1.1
  */
-public class CookieWorker {
+public class CookieWorker implements ISaveShow {
 
     /**
      * Method which search parameter value from query string or cookies
@@ -96,5 +97,21 @@ public class CookieWorker {
             cookie.setMaxAge(Math.toIntExact(TimeUnit.DAYS.toSeconds(1)));
         }
         resp.addCookie(cookie);
+    }
+
+    /**
+     * Retrieves value from parameters or cookies and saves value in cookie
+     *
+     * @param name parameter name
+     * @param req HttpServletRequest object
+     * @param resp HttpServletResponse object
+     * @return String with parameter value
+     * @since 1.1
+     */
+    @Override
+    public String workWithParameter(String name, HttpServletRequest req, HttpServletResponse resp) {
+        String result = getValueParamOrCookie(req, name);
+        saveCookies(resp, req, name, result);
+        return result;
     }
 }

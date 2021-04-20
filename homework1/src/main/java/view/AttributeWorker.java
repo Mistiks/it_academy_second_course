@@ -1,16 +1,18 @@
 package view;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.dto.Person;
+import view.api.ISaveShow;
 
 /**
  * Class which contains all methods for work with attributes
  *
  * @author Vadim Rataiko
- * @version 1.0
+ * @version 1.1
  */
-public class AttributeWorker {
+public class AttributeWorker implements ISaveShow {
 
     /**
      * Parameter name for person's first name
@@ -45,27 +47,29 @@ public class AttributeWorker {
         String value = req.getParameter(name);
 
         if (value == null) {
-            Person person = (Person) session.getAttribute(ATTRIBUTE);
+            value = (String) session.getAttribute(ATTRIBUTE);
 
-            try {
-                switch (name) {
-                    case FIRST_NAME_PARAM:
-                        value = person.getFirstName();
-                        break;
-                    case LAST_NAME_PARAM:
-                        value = person.getLastName();
-                        break;
-                    case AGE_PARAM:
-                        value = String.valueOf(person.getAge());
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Wrong parameter name");
-                }
-            } catch (NullPointerException e) {
+            if (value == null) {
                 throw new IllegalArgumentException("No value in session");
             }
         }
 
         return value;
+    }
+
+    /**
+     * Retrieves value from parameters or cookies and saves value in cookie
+     *
+     * @param name parameter name
+     * @param req HttpServletRequest object
+     * @param resp HttpServletResponse object
+     * @return String with parameter value
+     * @since 1.1
+     */
+    @Override
+    public String workWithParameter(String name, HttpServletRequest req, HttpServletResponse resp) {
+        String result = getValueParamOrAttribute(req, req.getSession(), name);
+        req.getSession().setAttribute(ATTRIBUTE, result);
+        return result;
     }
 }
