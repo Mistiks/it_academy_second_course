@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 /**
  * Class that provides homework main functionality
  *
- * @version 1.2
+ * @version 1.2.1
  * @author Vadim Rataiko
  */
 @WebServlet(name = "StorageServlet", urlPatterns = "/storage")
@@ -57,21 +57,16 @@ public class StorageServlet extends HttpServlet {
 
         if (header.equalsIgnoreCase(String.valueOf(Storage.COOKIES))) {
             worker = new CookieWorker();
-            firstName = worker.workWithParameter(FIRST_NAME_PARAM, req, resp);
-            lastName = worker.workWithParameter(LAST_NAME_PARAM, req, resp);
-            age = Integer.parseInt(worker.workWithParameter(AGE_PARAM, req, resp));
-
-            person = new Person(firstName, lastName, age);
        } else if (header.equalsIgnoreCase(String.valueOf(Storage.SESSION))) {
             worker = new AttributeWorker();
-            firstName = worker.workWithParameter(FIRST_NAME_PARAM, req, resp);
-            lastName = worker.workWithParameter(LAST_NAME_PARAM, req, resp);
-            age = Integer.parseInt(worker.workWithParameter(AGE_PARAM, req, resp));
-
-            person = new Person(firstName, lastName, age);
         } else {
             throw new IllegalArgumentException("Invalid header");
         }
+
+        firstName = worker.workWithParameter(FIRST_NAME_PARAM, req, resp);
+        lastName = worker.workWithParameter(LAST_NAME_PARAM, req, resp);
+        age = Integer.parseInt(worker.workWithParameter(AGE_PARAM, req, resp));
+        person = new Person(firstName, lastName, age);
 
         resp.setContentType("text/html");
         PrintWriter writer = resp.getWriter();
