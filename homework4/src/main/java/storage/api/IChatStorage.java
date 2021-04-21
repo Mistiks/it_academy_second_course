@@ -5,6 +5,7 @@ import java.util.List;
 
 /** Interface that provides api for access to message storage
  *
+ * @author Ilya Shadryn
  * @author Vadim Rataiko
  * @version 1.0
  */

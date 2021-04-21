@@ -20,7 +20,7 @@ import java.util.List;
  * Class which implements register functionality
  *
  * @author Vadim Rataiko
- * @version 1.0
+ * @version 1.1
  */
 @WebServlet(name = "RegisterServlet", urlPatterns = "/registerServlet")
 public class RegisterServlet extends HttpServlet {
@@ -71,10 +71,6 @@ public class RegisterServlet extends HttpServlet {
 
         if (userList == null) {
             userList = new ArrayList<User>();
-            userList.add(new User(first_name, last_name, patronymic, username, password, dateOfBirth));
-            context.setAttribute(DATA, userList);
-            session.setAttribute(SIGN_UP_FAIL, "false");
-            response.sendRedirect(contextPath + "/signIn");
         } else {
             for (Object object : userList) {
                 User user = (User) object;
@@ -86,10 +82,11 @@ public class RegisterServlet extends HttpServlet {
                 }
             }
 
-            userList.add(new User(first_name, last_name, patronymic, username, password, dateOfBirth));
-            context.setAttribute(DATA, userList);
-            session.setAttribute(SIGN_UP_FAIL, "false");
-            response.sendRedirect(contextPath + "/signIn");
         }
+
+        userList.add(new User(first_name, last_name, patronymic, username, password, dateOfBirth));
+        context.setAttribute(DATA, userList);
+        session.setAttribute(SIGN_UP_FAIL, "false");
+        response.sendRedirect(contextPath + "/signIn");
     }
 }
