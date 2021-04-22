@@ -42,12 +42,14 @@ public class ChatStorage implements IChatStorage {
     @Override
     public void addMessage(String login, Message message) {
         List<Message> chat;
-        if(this.chats.containsKey(login)){
+
+        if (this.chats.containsKey(login)) {
             chat = this.chats.get(login);
         } else {
             chat = new ArrayList<>();
             this.chats.put(login, chat);
         }
+
         chat.add(message);
     }
 

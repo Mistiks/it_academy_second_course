@@ -67,7 +67,7 @@ public class MessageServlet extends HttpServlet {
 
         Message message = new Message(currentUser, recipient, text, LocalDateTime.now());
 
-        try{
+        try {
             this.messageService.addMessage(recipient, message);
             session.setAttribute(MESSAGE_SENT, "true");
             response.sendRedirect(contextPath + "/message");

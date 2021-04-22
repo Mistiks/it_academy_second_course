@@ -51,21 +51,10 @@ public class SearchServlet extends HttpServlet {
             page = Integer.parseInt(request.getParameter("currentPage"));
         }
 
-        String departure = request.getParameter("Departure");
-        String arrival = request.getParameter("Arrival");
-        String departureDate = request.getParameter("timeDeparture");
-
-        if (departure == null || arrival == null  || departureDate == null) {
-            departure = (String) context.getAttribute("Departure");
-            arrival = (String) context.getAttribute("Arrival");
-            departureDate = (String) context.getAttribute("timeDeparture");
-            context.removeAttribute("Departure");
-            context.removeAttribute("Arrival");
-            context.removeAttribute("timeDeparture");
-        }
-
+        String departure = (String) context.getAttribute("Departure");
+        String arrival = (String) context.getAttribute("Arrival");
+        String departureDate = (String) context.getAttribute("timeDeparture");
         String[] parameters = {departureDate, departure, arrival};
-        System.out.println(departureDate);
 
         int numberOfRows = tableAccess.getRowCount(parameters);
         int rowsOnPage = 25;
@@ -81,7 +70,6 @@ public class SearchServlet extends HttpServlet {
         request.setAttribute("Arrival", arrival);
         request.setAttribute("timeDeparture", departureDate);
         request.setAttribute("currentPage", page);
-        System.out.println(departureDate);
         request.getRequestDispatcher("/search.jsp").forward(request, response);
     }
 }

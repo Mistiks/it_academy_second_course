@@ -36,11 +36,11 @@ public class AuthService implements IAuthService {
     public User authentication(String login, String password) {
         User user = this.userService.get(login);
 
-        if(user == null){
+        if (user == null) {
             return null;
         }
 
-        if(!Objects.equals(user.getPassword(), password)){
+        if (!Objects.equals(user.getPassword(), password)) {
             return null;
         }
 

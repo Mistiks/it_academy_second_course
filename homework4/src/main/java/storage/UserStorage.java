@@ -43,9 +43,10 @@ public class UserStorage implements IUserStorage {
      */
     @Override
     public void add(User user) {
-        if(this.users.containsKey(user.getUsername())){
+        if (this.users.containsKey(user.getUsername())) {
             throw new IllegalArgumentException("Пользователь уже сущуствует");
         }
+
         this.users.put(user.getUsername(), user);
     }
 
