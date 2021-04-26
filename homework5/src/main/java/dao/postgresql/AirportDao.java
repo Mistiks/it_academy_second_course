@@ -1,20 +1,20 @@
-package dao;
+package dao.postgresql;
 
 import dao.api.ITableAccess;
-import model.Airport;
+import dao.connectors.DataSourceCreatorDemo;
+import model.dto.Airport;
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
  * Class-realisation of ITableAccess interface for airports_data table in database
  *
  * @author Vadim Rataiko
- * @version  1.0.2
+ * @version  1.0.1
  */
 public class AirportDao implements ITableAccess<Airport> {
 
@@ -99,10 +99,10 @@ public class AirportDao implements ITableAccess<Airport> {
     }
 
     /**
-     * Taking data from field in database that satisfy prepared SELECT request.
+     * Taking data from field in database that satisfy prepared SELECT request
      *
      * @param name field for search
-     * @return sorted answer from database
+     * @return answer from database
      */
     @Override
     public List<String> getField(String name) {
@@ -130,7 +130,6 @@ public class AirportDao implements ITableAccess<Airport> {
             e.printStackTrace();
         }
 
-        Collections.sort(listField);
         return listField;
     }
 
