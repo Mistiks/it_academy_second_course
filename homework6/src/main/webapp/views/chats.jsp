@@ -28,7 +28,7 @@
                         <td width="60%">${item.text}</td>
                     </tr>
                 </c:forEach>
-            </tbody>
+            </body>
         </table>
     </c:when>
     <c:otherwise>
@@ -36,7 +36,7 @@
     </c:otherwise>
 </c:choose>
 
-<p><input type="button" onclick="location.href='/Mk-JD2-78-21-6-0.0.0-SHAPSHOT/profile';" value="Main page" /></p>
+<p><input type="button" onclick="location.href='${pageContext.request.contextPath}/profile';" value="Main page" /></p>
 
 </body>
 </html>

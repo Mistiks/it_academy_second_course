@@ -20,9 +20,9 @@ import java.util.List;
  * Class which implements register functionality
  *
  * @author Vadim Rataiko
- * @version 1.1
+ * @version 1.2
  */
-@WebServlet(name = "RegisterServlet", urlPatterns = "/registerServlet")
+@WebServlet(name = "RegisterServlet", urlPatterns = "/signUp")
 public class RegisterServlet extends HttpServlet {
 
     /** Constant attribute name for user storage */
@@ -32,7 +32,17 @@ public class RegisterServlet extends HttpServlet {
     private static final String SIGN_UP_FAIL = "fail_sign_up";
 
     /**
-     * GET request processing method. Register new user if all field are filled with data (username must be unique).
+     * GET request processing method. Redirects to signUp page
+     *
+     * @throws ServletException if the request for the GET could not be handled
+     * @throws IOException if an input or output error is detected when the servlet handles the GET request
+     */
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("signUp.jsp").forward(request, response);
+    }
+
+    /**
+     * POST request processing method. Register new user if all field are filled with data (username must be unique).
      * Redirects to sign up page with error message if register process fails.
      *
      * @param request HttpServletRequest object
@@ -40,7 +50,7 @@ public class RegisterServlet extends HttpServlet {
      * @throws ServletException if the request for the GET could not be handled
      * @throws IOException if an input or output error is detected when the servlet handles the GET request
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
         ServletContext context = getServletContext();

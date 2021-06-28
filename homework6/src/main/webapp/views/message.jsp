@@ -23,7 +23,7 @@
 				</tr></table>
 			<p><input type="submit" value="Send" /></form></p>
 
-<p><input type="button" onclick="location.href='/Mk-JD2-78-21-6-0.0.0-SHAPSHOT/profile';" value="Main page" /></p>
+<p><input type="button" onclick="location.href='${pageContext.request.contextPath}/profile';" value="Main page" /></p>
 
             <c:if test = "${emptyField == true}">
                    <p><span style='color: red;'>Some fields are empty!</span></p>
@@ -35,6 +35,5 @@
 
             <c:remove var="emptyField" scope="session" />
             <c:remove var="messageSent" scope="session" />
-
 </body>
 </html>

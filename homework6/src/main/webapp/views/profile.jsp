@@ -10,8 +10,8 @@
 <body>
 <h2>Profile Page</h2>
 <p><span style='color: green;'>Welcome ${currentUser.username}. You have logged in.</span></p>
-<p><input type="button" onclick="location.href='/Mk-JD2-78-21-6-0.0.0-SHAPSHOT/message';" value="Send message" /></p>
-<p><input type="button" onclick="location.href='/Mk-JD2-78-21-6-0.0.0-SHAPSHOT/chats';" value="Show messages" /></p>
-<p><input type="button" onclick="location.href='/Mk-JD2-78-21-6-0.0.0-SHAPSHOT/signIn';" value="Logout" /></p>
+<p><input type="button" onclick="location.href='${pageContext.request.contextPath}/message';" value="Send message" /></p>
+<p><input type="button" onclick="location.href='${pageContext.request.contextPath}/chats';" value="Show messages" /></p>
+<p><input type="button" onclick="location.href='${pageContext.request.contextPath}/signIn';" value="Logout" /></p>
 </body>
 </html>

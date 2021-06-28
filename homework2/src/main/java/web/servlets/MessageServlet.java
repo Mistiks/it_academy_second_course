@@ -18,9 +18,9 @@ import java.util.List;
  * Class which implements sending messages functionality
  *
  * @author Vadim Rataiko
- * @version 1.0
+ * @version 1.1
  */
-@WebServlet(name = "MessageServlet", urlPatterns = "/messageServlet")
+@WebServlet(name = "MessageServlet", urlPatterns = "/message")
 public class MessageServlet extends HttpServlet {
 
     /** Constant attribute name for messages storage */
@@ -34,6 +34,16 @@ public class MessageServlet extends HttpServlet {
 
     /** Constant attribute name for "MESSAGE_SENT" flag */
     private static final String MESSAGE_SENT = "messageSent";
+
+    /**
+     * GET request processing method. Redirects to sending messages page
+     *
+     * @throws ServletException if the request for the GET could not be handled
+     * @throws IOException if an input or output error is detected when the servlet handles the GET request
+     */
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("message.jsp").forward(request, response);
+    }
 
     /**
      * POST request processing method. Redirects to sending messages page with success message if message correct and

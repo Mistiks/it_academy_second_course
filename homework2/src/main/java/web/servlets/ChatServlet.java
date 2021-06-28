@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +16,9 @@ import java.util.List;
  * Class which gets all messages for current user
  *
  * @author Vadim Rataiko
- * @version 1.0
+ * @version 1.1
  */
-@WebServlet(urlPatterns = "/chatServlet")
+@WebServlet(urlPatterns = "/chats")
 public class ChatServlet extends HttpServlet {
 
     /** Constant attribute name for current user storage */
@@ -51,7 +50,8 @@ public class ChatServlet extends HttpServlet {
         messageList = (ArrayList) context.getAttribute(MESSAGE);
 
         if (messageList == null) {
-            return; // предотвращаем NPE в цикле при отсутствии сообщений
+            request.getRequestDispatcher("chats.jsp").forward(request, response);
+            return;
         }
 
         for (Object object : messageList) {
@@ -63,5 +63,6 @@ public class ChatServlet extends HttpServlet {
         }
 
         session.setAttribute(CHATS, chatList);
+        request.getRequestDispatcher("chats.jsp").forward(request, response);
     }
 }

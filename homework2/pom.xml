@@ -125,6 +125,7 @@
                         <exclude>**/*LoginServlet.*</exclude>
                         <exclude>**/*MessageServlet.*</exclude>
                         <exclude>**/*RegisterServlet.*</exclude>
+                        <exclude>**/*ProfileServlet.*</exclude>
                     </excludes>>
                 </configuration>
                 <executions>

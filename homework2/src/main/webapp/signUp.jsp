@@ -11,7 +11,7 @@
 </head>
 <body>
 <h2>Register Form</h2>
-<form action="registerServlet" method="get">
+<form method="POST" action="${pageContext.request.contextPath}/signUp">
 			<table style="with: 50%">
 				<tr>
 					<td>First Name</td>
