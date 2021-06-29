@@ -4,50 +4,6 @@
          https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          metadata-complete="false">
     <display-name>Mk-JD2-78-21</display-name>
-    <servlet>
-        <servlet-name>SignUp</servlet-name>
-        <jsp-file>/signUp.jsp</jsp-file> <!-- Your JSP. Must begin with '/' -->
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SignUp</servlet-name>
-        <url-pattern>/signUp</url-pattern> <!-- Any URL you want here -->
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Example</servlet-name>
-        <jsp-file>/message.jsp</jsp-file> <!-- Your JSP. Must begin with '/' -->
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Example</servlet-name>
-        <url-pattern>/message</url-pattern> <!-- Any URL you want here -->
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Chats</servlet-name>
-        <jsp-file>/chats.jsp</jsp-file> <!-- Your JSP. Must begin with '/' -->
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Chats</servlet-name>
-        <url-pattern>/chats</url-pattern> <!-- Any URL you want here -->
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>SignIn</servlet-name>
-        <jsp-file>/signIn.jsp</jsp-file> <!-- Your JSP. Must begin with '/' -->
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SignIn</servlet-name>
-        <url-pattern>/signIn</url-pattern> <!-- Any URL you want here -->
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Profile</servlet-name>
-        <jsp-file>/profile.jsp</jsp-file> <!-- Your JSP. Must begin with '/' -->
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Profile</servlet-name>
-        <url-pattern>/profile</url-pattern> <!-- Any URL you want here -->
-    </servlet-mapping>
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

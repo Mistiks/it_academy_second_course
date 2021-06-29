@@ -17,9 +17,9 @@ import java.util.List;
  * Class which gets all messages for current user
  *
  * @author Vadim Rataiko
- * @version 1.0
+ * @version 1.1
  */
-@WebServlet(urlPatterns = "/chatServlet")
+@WebServlet(urlPatterns = "/chats")
 public class ChatServlet extends HttpServlet {
 
     /** Constant attribute name for current user storage */
@@ -54,5 +54,6 @@ public class ChatServlet extends HttpServlet {
 
         List<Message> messages = this.chatStorage.get(currentUser);
         session.setAttribute(CHATS, messages);
+        request.getRequestDispatcher("chats.jsp").forward(request, response);
     }
 }

@@ -12,9 +12,9 @@ import java.io.IOException;
  * Class which implements login functionality
  *
  * @author Vadim Rataiko
- * @version 1.0
+ * @version 1.1
  */
-@WebServlet(name = "LoginServlet", urlPatterns = "/loginServlet")
+@WebServlet(name = "LoginServlet", urlPatterns = "/signIn")
 public class LoginServlet extends HttpServlet {
 
     /** Constant attribute name for current user storage */
@@ -32,15 +32,25 @@ public class LoginServlet extends HttpServlet {
     }
 
     /**
-     * GET request processing method. Redirects to profile page if user with entered username and password exists.
+     * GET request processing method. Redirects to signIn page
+     *
+     * @throws ServletException if the request for the GET could not be handled
+     * @throws IOException if an input or output error is detected when the servlet handles the GET request
+     */
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getSession().removeAttribute(CURRENT_USER);
+        request.getRequestDispatcher("signIn.jsp").forward(request, response);
+    }
+
+    /**
+     * POST request processing method. Redirects to profile page if user with entered username and password exists.
      * Redirects to sign in page with error message if login process fails.
      *
      * @param request HttpServletRequest object
      * @param response HttpServletResponse object
-     * @throws ServletException if the request for the GET could not be handled
      * @throws IOException if an input or output error is detected when the servlet handles the GET request
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         HttpSession session = request.getSession();
 

@@ -11,7 +11,7 @@
 </head>
 <body>
 <h2>Message Form</h2>
-<form action="messageServlet" method="post">
+<form method="POST" action="${pageContext.request.contextPath}/message">
 			<table style="with: 50%">
 				<tr>
 					<td>Recipient</td>
@@ -23,7 +23,7 @@
 				</tr></table>
 			<p><input type="submit" value="Send" /></form></p>
 
-<p><input type="button" onclick="location.href='/Mk-JD2-78-21-4-0.0.0-SHAPSHOT/profile';" value="Main page" /></p>
+<p><input type="button" onclick="location.href='${pageContext.request.contextPath}/profile';" value="Main page" /></p>
 
             <c:if test = "${sessionScope.emptyField == true}">
                    <p><span style='color: red;'>Some fields are empty!</span></p>
@@ -35,6 +35,5 @@
 
             <c:remove var="emptyField" scope="session" />
             <c:remove var="messageSent" scope="session" />
-
 </body>
 </html>

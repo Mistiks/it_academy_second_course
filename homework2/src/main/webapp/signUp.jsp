@@ -38,7 +38,7 @@
 					<td><input type="text" name="dateOfBirth" /></td>
 				</tr></table>
 			<p><input type="submit" value="Submit" /></form></p>
-			<p><input type="button" onclick="location.href='/Mk-JD2-78-21-0.0.0-SHAPSHOT/signIn';" value="Sign in" /></p>
+			<p><input type="button" onclick="location.href='${pageContext.request.contextPath}/signIn';" value="Sign in" /></p>
 
             <c:if test = "${sessionScope.fail_sign_up == true}">
                    <p><span style='color: red;'>Incorrect data. Please, try again!</span></p>

@@ -10,9 +10,9 @@
 <title>Chat Form</title>
 </head>
 <body>
-<jsp:include page="/chatServlet" />
 <h2>Chat Form</h2>
-<c:if test="${sessionScope.userChats.size() > 0}">
+<c:choose>
+<c:when test="${userChats.size() > 0}">
         <table border="1">
             <tbody>
                     <tr>
@@ -21,7 +21,7 @@
                         <td width="60%">Message</td>
                     </tr>
 
-                <c:forEach items="${sessionScope.userChats}" var="item" varStatus="status">
+                <c:forEach items="${userChats}" var="item" varStatus="status">
                     <tr>
                         <td width="20%">${item.sender}</td>
                         <td width="20%">${item.time.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))}</td>
@@ -30,12 +30,13 @@
                 </c:forEach>
             </tbody>
         </table>
-    </c:if>
-    <c:if test="${sessionScope.userChats == null}">
+    </c:when>
+    <c:otherwise>
         <p>You don't have any messages.</p>
-    </c:if>
+    </c:otherwise>
+</c:choose>
 
-<p><input type="button" onclick="location.href='/Mk-JD2-78-21-4-0.0.0-SHAPSHOT/profile';" value="Main page" /></p>
+<p><input type="button" onclick="location.href='${pageContext.request.contextPath}/profile';" value="Main page" /></p>
 
 <c:remove var="userChats" scope="session" />
 </body>

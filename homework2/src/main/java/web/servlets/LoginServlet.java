@@ -45,10 +45,9 @@ public class LoginServlet extends HttpServlet {
      *
      * @param request HttpServletRequest object
      * @param response HttpServletResponse object
-     * @throws ServletException if the request for the GET could not be handled
      * @throws IOException if an input or output error is detected when the servlet handles the GET request
      */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         HttpSession session = request.getSession();
         ServletContext context = getServletContext();
