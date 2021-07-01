@@ -21,28 +21,28 @@ public class User implements Serializable {
 
     /** User's first name */
     @Column(name = "first_name", nullable = false)
-    private  String firstName;
+    private String firstName;
 
     /** User's last name */
     @Column(name = "last_name", nullable = false)
-    private  String lastName;
+    private String lastName;
 
     /** User's patronymic */
     @Column(name = "patronymic", nullable = false)
-    private  String patronymic;
+    private String patronymic;
 
     /** User's username */
     @Id
     @Column(name = "username", nullable = false)
-    private  String username;
+    private String username;
 
     /** User's password */
     @Column(name = "password", nullable = false)
-    private  String password;
+    private String password;
 
     /** User's birth date */
     @Column(name = "birth_date", nullable = false)
-    private  LocalDate dateOfBirth;
+    private LocalDate dateOfBirth;
 
 
     /**
@@ -65,7 +65,7 @@ public class User implements Serializable {
 
         try {
             dateOfBirth = LocalDate.parse(dateOfBirthString, formatter);
-        } catch (DateTimeParseException e) {
+        } catch (DateTimeParseException | NullPointerException e) {
             throw new IllegalArgumentException("Invalid date of birth");
         }
     }

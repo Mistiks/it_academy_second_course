@@ -33,7 +33,7 @@ public class SecurityFilter implements HandlerInterceptor {
         String contextPath = httpServletRequest.getContextPath();
         HttpSession session = httpServletRequest.getSession();
 
-        if ((session != null) && (session.getAttribute("currentUser") != null)) {
+        if (session.getAttribute("currentUser") != null) {
             return true;
         } else {
             httpServletResponse.sendRedirect(contextPath + "/signIn");

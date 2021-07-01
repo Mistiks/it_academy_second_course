@@ -3,7 +3,6 @@ package view;
 import model.User;
 import org.junit.jupiter.api.Test;
 import storage.dao.UserDao;
-import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -11,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * Test class for UserService object
  *
  * @author Vadim Rataiko
- * @version 1.1
+ * @version 1.1.1
  */
 public class UserServiceTest {
 
@@ -32,7 +31,7 @@ public class UserServiceTest {
                         "test", "" , "10/10/2010")));
         thrown = assertThrows(IllegalArgumentException.class,
                 () -> instance.signUp(new User("test", "test" , "test",
-                        "", "test" , "10/10/2010")));
+                        "test", "test" , "")));
         thrown = assertThrows(IllegalArgumentException.class,
                 () -> instance.signUp(new User("test", "test" , "test",
                         null, "test" , "10/10/2010")));

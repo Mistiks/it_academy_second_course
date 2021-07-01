@@ -32,8 +32,5 @@
             <c:if test = "${messageSent == true}">
                    <p><span style='color: green;'>Message has been sent!</span></p>
             </c:if>
-
-            <c:remove var="emptyField" scope="session" />
-            <c:remove var="messageSent" scope="session" />
 </body>
 </html>

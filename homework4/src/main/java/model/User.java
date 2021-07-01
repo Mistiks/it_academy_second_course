@@ -7,7 +7,7 @@ import java.time.format.DateTimeParseException;
 /**
  * Class which stores all entered user registration information
  *
- * @version 1.1
+ * @version 1.1.1
  * @author Vadim Rataiko
  */
 public class User {
@@ -50,7 +50,7 @@ public class User {
 
         try {
             dateOfBirth = LocalDate.parse(dateOfBirthString, formatter);
-        } catch (DateTimeParseException e) {
+        } catch (DateTimeParseException | NullPointerException e) {
             throw new IllegalArgumentException("Invalid date of birth");
         }
     }

@@ -11,7 +11,7 @@ import java.util.List;
  * Implements IMessageService
  *
  * @author Vadim Rataiko
- * @version 1.1
+ * @version 1.2
  */
 public class MessageService implements IMessageService {
 
@@ -33,12 +33,28 @@ public class MessageService implements IMessageService {
     }
 
     /**
-     * Saves message, sent to user
+     * Saves message, sent it to user.
+     * Throws IllegalArgumentException if fields with recipient or text are empty
      *
      * @param message Message object, that will be saved
      */
     @Override
     public void addMessage(Message message) {
-        this.repository.save(message);
+        if (nullOrEmpty(message.getRecipient()) || nullOrEmpty(message.getText())) {
+            throw new IllegalArgumentException();
+        } else {
+            this.repository.save(message);
+        }
+    }
+
+    /**
+     * Checks if string equals null or empty
+     *
+     * @param val string to check
+     * @return true if string isn't empty, false if empty or null
+     * @since 1.2
+     */
+    private boolean nullOrEmpty(String val) {
+        return val == null || val.isEmpty();
     }
 }
